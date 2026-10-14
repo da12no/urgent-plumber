@@ -6,7 +6,8 @@ import { CTAButton } from '@/components/ui/CTAButton'
 import { FAQAccordion } from '@/components/ui/FAQAccordion'
 import { ServiceCard } from '@/components/ui/ServiceCard'
 import { SERVICES, getService, getRelatedServices } from '@/lib/services'
-import { SITE_URL, PHONE_DISPLAY, PHONE_HREF, BUSINESS_NAME } from '@/lib/config'
+import { buildServiceSchema, buildFAQSchema } from '@/lib/schema'
+import { SITE_URL, PHONE_DISPLAY, PHONE_HREF } from '@/lib/config'
 
 export function generateStaticParams() {
   return SERVICES.map(s => ({ slug: s.slug }))
@@ -31,25 +32,8 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
 
   const related = getRelatedServices(service.relatedSlugs)
 
-  const serviceSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Service',
-    name: service.name,
-    description: service.intro,
-    provider: { '@type': 'Organization', name: BUSINESS_NAME, url: SITE_URL },
-    areaServed: { '@type': 'City', name: 'Phoenix', containedInPlace: { '@type': 'State', name: 'Arizona' } },
-    serviceType: service.name,
-  }
-
-  const faqSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: service.faqs.map(f => ({
-      '@type': 'Question',
-      name: f.question,
-      acceptedAnswer: { '@type': 'Answer', text: f.answer },
-    })),
-  }
+  const serviceSchema = buildServiceSchema(service)
+  const faqSchema = buildFAQSchema(service.faqs)
 
   return (
     <>

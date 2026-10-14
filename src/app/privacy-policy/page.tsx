@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: `Privacy Policy | ${BUSINESS_NAME}`,
   description: `Privacy policy for ${BUSINESS_NAME} - how we collect, use, and protect information on urgentplumberaz.com.`,
   alternates: { canonical: `${SITE_URL}/privacy-policy` },
+  robots: { index: false, follow: false },
 }
 
 export default function PrivacyPolicyPage() {

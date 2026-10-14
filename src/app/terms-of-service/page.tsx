@@ -4,8 +4,9 @@ import { SITE_URL, BUSINESS_NAME, EMAIL, DISCLAIMER } from '@/lib/config'
 
 export const metadata: Metadata = {
   title: `Terms of Service | ${BUSINESS_NAME}`,
-  description: `Terms of service for ${BUSINESS_NAME} - conditions for using the contractor connection service at urgentplumberaz.com.`,
+  description: `Terms of service for ${BUSINESS_NAME} at urgentplumberaz.com.`,
   alternates: { canonical: `${SITE_URL}/terms-of-service` },
+  robots: { index: false, follow: false },
 }
 
 export default function TermsOfServicePage() {

@@ -7,7 +7,8 @@ import { FAQAccordion } from '@/components/ui/FAQAccordion'
 import { ServiceCard } from '@/components/ui/ServiceCard'
 import { CITIES, getCity } from '@/lib/cities'
 import { SERVICES } from '@/lib/services'
-import { SITE_URL, PHONE_DISPLAY, PHONE_HREF, BUSINESS_NAME } from '@/lib/config'
+import { buildCitySchema, buildFAQSchema } from '@/lib/schema'
+import { SITE_URL, PHONE_DISPLAY, PHONE_HREF } from '@/lib/config'
 
 export function generateStaticParams() {
   return CITIES.map(c => ({ city: c.slug }))
@@ -36,33 +37,8 @@ export default async function CityPage({ params }: { params: Promise<{ city: str
     .map(s => CITIES.find(c => c.slug === s))
     .filter(Boolean) as typeof CITIES
 
-  const localBusinessSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
-    name: BUSINESS_NAME,
-    description: `Plumbing services in ${city.name}, AZ.`,
-    url: `${SITE_URL}/${city.slug}`,
-    telephone: PHONE_DISPLAY,
-    areaServed: { '@type': 'City', name: city.name, containedInPlace: { '@type': 'State', name: 'Arizona' } },
-    hasOfferCatalog: {
-      '@type': 'OfferCatalog',
-      name: `Plumbing Services in ${city.name}, AZ`,
-      itemListElement: featuredServices.map(s => ({
-        '@type': 'Offer',
-        itemOffered: { '@type': 'Service', name: s.name, description: s.shortDesc, url: `${SITE_URL}/services/${s.slug}` },
-      })),
-    },
-  }
-
-  const faqSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: city.faqs.map(f => ({
-      '@type': 'Question',
-      name: f.question,
-      acceptedAnswer: { '@type': 'Answer', text: f.answer },
-    })),
-  }
+  const localBusinessSchema = buildCitySchema(city.name, city.slug)
+  const faqSchema = buildFAQSchema(city.faqs)
 
   return (
     <>

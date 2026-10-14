@@ -4,17 +4,17 @@ import './globals.css'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { StickyCallBar } from '@/components/layout/StickyCallBar'
-import { BUSINESS_NAME, PHONE_DISPLAY, SITE_URL, TAGLINE } from '@/lib/config'
+import { BUSINESS_NAME, PHONE_DISPLAY, SITE_URL } from '@/lib/config'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' })
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${BUSINESS_NAME} | Connecting Phoenix Homeowners With Local Plumbers`,
+    default: `${BUSINESS_NAME} | Plumber in Phoenix, AZ`,
     template: `%s | ${BUSINESS_NAME}`,
   },
-  description: `${TAGLINE}. Call ${PHONE_DISPLAY} to connect with an independent local plumbing contractor in the Phoenix metropolitan area.`,
+  description: `Need a plumber in Phoenix? Call Urgent Plumber at ${PHONE_DISPLAY} for drain cleaning, water heater repair, slab leaks, emergency plumbing, and more throughout the Phoenix metro area.`,
   openGraph: {
     type: 'website',
     siteName: BUSINESS_NAME,

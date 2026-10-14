@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     default: `${BUSINESS_NAME} | Plumber in Phoenix, AZ`,
     template: `%s | ${BUSINESS_NAME}`,
   },
-  description: `Need a plumber in Phoenix? Call Urgent Plumber at ${PHONE_DISPLAY} for drain cleaning, water heater repair, slab leaks, emergency plumbing, and more throughout the Phoenix metro area.`,
+  description: `Need a plumber in Phoenix? Urgent Plumber is available 24/7. Call ${PHONE_DISPLAY} for emergency plumbing, drain cleaning, water heater repair, slab leaks, and more throughout the Phoenix metro area.`,
   openGraph: {
     type: 'website',
     siteName: BUSINESS_NAME,

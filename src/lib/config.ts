@@ -27,5 +27,7 @@ export const TOP_SERVICES = [
   'Toilet Repair',
 ]
 
+export const HOURS = 'Available 24/7 · 365 Days a Year'
+
 export const DISCLAIMER =
   'This site is a free service to assist homeowners in connecting with local service contractors. All contractors are independent and this site does not warrant or guarantee any work performed. It is the responsibility of the homeowner to verify that the hired contractor furnishes the necessary license and insurance required for the work being performed. All persons depicted in a photo or video are actors or models and not contractors listed on this site.'

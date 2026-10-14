@@ -10,7 +10,7 @@ import { BUSINESS_NAME, PHONE_DISPLAY, PHONE_HREF, SITE_URL, EMAIL } from '@/lib
 
 export const metadata: Metadata = {
   title: 'Plumber in Phoenix, AZ | Urgent Plumber',
-  description: 'Need a plumber in Phoenix? Call Urgent Plumber for drain cleaning, water heater repair, slab leaks, emergency plumbing, and more throughout the Phoenix metro area.',
+  description: 'Need a plumber in Phoenix? Urgent Plumber is available 24/7 for emergency plumbing, drain cleaning, water heater repair, slab leaks, and more throughout the Phoenix metro area.',
   openGraph: {
     title: 'Plumber in Phoenix, AZ | Urgent Plumber',
     description: 'Plumbing help throughout the Phoenix metro area. Call for drain cleaning, water heaters, slab leaks, emergency plumbing, and more.',
@@ -82,8 +82,16 @@ const jsonLd = {
   url: SITE_URL,
   telephone: PHONE_DISPLAY,
   email: EMAIL,
-  description: 'Plumbing services throughout the Greater Phoenix metropolitan area.',
+  description: 'Available 24/7 for plumbing services throughout the Greater Phoenix metropolitan area.',
   areaServed: { '@type': 'City', name: 'Phoenix', containedInPlace: { '@type': 'State', name: 'Arizona' } },
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+      opens: '00:00',
+      closes: '23:59',
+    },
+  ],
 }
 
 export default function HomePage() {
@@ -98,6 +106,10 @@ export default function HomePage() {
         </div>
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 md:py-28">
           <div className="max-w-2xl">
+            <div className="inline-flex items-center gap-2 bg-brand-red/20 border border-brand-red/40 rounded-full px-4 py-1.5 mb-5">
+              <span className="w-2 h-2 rounded-full bg-brand-red animate-pulse shrink-0" aria-hidden="true" />
+              <span className="text-white text-sm font-semibold tracking-wide">Available 24/7 · 365 Days a Year</span>
+            </div>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-5">
               Need a Plumber<br />in Phoenix?<br />
               <span className="text-brand-red">We&apos;re Here to Help.</span>

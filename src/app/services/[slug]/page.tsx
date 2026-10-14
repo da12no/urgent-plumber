@@ -20,11 +20,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     title: service.title,
     description: service.metaDescription,
     alternates: { canonical: `${SITE_URL}/services/${service.slug}` },
-    openGraph: {
-      title: service.title,
-      description: service.metaDescription,
-      url: `${SITE_URL}/services/${service.slug}`,
-    },
+    openGraph: { title: service.title, description: service.metaDescription, url: `${SITE_URL}/services/${service.slug}` },
   }
 }
 
@@ -40,16 +36,8 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
     '@type': 'Service',
     name: service.name,
     description: service.intro,
-    provider: {
-      '@type': 'Organization',
-      name: BUSINESS_NAME,
-      url: SITE_URL,
-    },
-    areaServed: {
-      '@type': 'City',
-      name: 'Phoenix',
-      containedInPlace: { '@type': 'State', name: 'Arizona' },
-    },
+    provider: { '@type': 'Organization', name: BUSINESS_NAME, url: SITE_URL },
+    areaServed: { '@type': 'City', name: 'Phoenix', containedInPlace: { '@type': 'State', name: 'Arizona' } },
     serviceType: service.name,
   }
 
@@ -68,19 +56,17 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
-      {/* Breadcrumb */}
       <div className="bg-brand-surface border-b border-brand-border">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4">
           <Breadcrumbs crumbs={[
             { label: 'Home', href: '/' },
-            { label: 'Plumbing Services', href: '/services' },
+            { label: 'Services', href: '/services' },
             { label: service.name },
           ]} />
         </div>
       </div>
 
-      {/* Hero */}
-      <section className="py-14 md:py-18" style={{ backgroundColor: 'var(--color-brand-navy)' }}>
+      <section className="py-14" style={{ backgroundColor: 'var(--color-brand-navy)' }}>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <div className="inline-flex items-center justify-center h-14 w-14 rounded-xl bg-white/10 mb-5">
@@ -99,7 +85,6 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
         <div className="lg:grid lg:grid-cols-3 lg:gap-12">
           <div className="lg:col-span-2 space-y-12">
 
-            {/* Symptoms */}
             <div>
               <h2 className="text-2xl font-bold text-brand-navy mb-5">Signs You May Need {service.name}</h2>
               <ul className="space-y-3">
@@ -114,7 +99,6 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
               </ul>
             </div>
 
-            {/* Causes */}
             <div>
               <h2 className="text-2xl font-bold text-brand-navy mb-5">Common Causes</h2>
               <ul className="space-y-3">
@@ -129,43 +113,34 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
               </ul>
             </div>
 
-            {/* When to Call */}
             <div className="rounded-xl border-l-4 border-brand-red bg-red-50 p-6">
-              <h2 className="text-xl font-bold text-brand-navy mb-3">When to Call for Help</h2>
+              <h2 className="text-xl font-bold text-brand-navy mb-3">When to Call</h2>
               <p className="text-brand-muted leading-relaxed">{service.whenToCall}</p>
             </div>
 
-            {/* Service Description */}
             <div>
               <h2 className="text-2xl font-bold text-brand-navy mb-4">About This Service</h2>
               <p className="text-brand-muted leading-relaxed">{service.serviceDescription}</p>
             </div>
 
-            {/* Phoenix Context */}
             <div className="rounded-xl bg-brand-surface border border-brand-border p-6">
-              <h2 className="text-xl font-bold text-brand-navy mb-3">
-                {service.name} in Phoenix, Arizona
-              </h2>
+              <h2 className="text-xl font-bold text-brand-navy mb-3">{service.name} in Phoenix, Arizona</h2>
               <p className="text-brand-muted leading-relaxed">{service.phoenixContext}</p>
             </div>
 
-            {/* FAQs */}
             {service.faqs.length > 0 && (
               <div>
-                <h2 className="text-2xl font-bold text-brand-navy mb-6">
-                  Frequently Asked Questions About {service.name}
-                </h2>
+                <h2 className="text-2xl font-bold text-brand-navy mb-6">{service.name} - Common Questions</h2>
                 <FAQAccordion faqs={service.faqs} />
               </div>
             )}
           </div>
 
-          {/* Sidebar */}
-          <aside className="mt-12 lg:mt-0 space-y-6">
+          <aside className="mt-12 lg:mt-0 space-y-5">
             <div className="rounded-xl bg-brand-navy text-white p-6 sticky top-24">
-              <h3 className="text-xl font-bold mb-2">Get Connected Today</h3>
+              <h3 className="text-lg font-bold mb-2">Need Help?</h3>
               <p className="text-white/70 text-sm mb-5 leading-relaxed">
-                Call Urgent Plumber to discuss your {service.name.toLowerCase()} needs and connect with an independent local contractor in the Phoenix area.
+                Call Urgent Plumber for {service.name.toLowerCase()} anywhere in the Phoenix metro area.
               </p>
               <a
                 href={PHONE_HREF}
@@ -177,25 +152,19 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
                 </svg>
                 {PHONE_DISPLAY}
               </a>
-              <p className="text-white/40 text-xs text-center mt-3">Free connection service</p>
             </div>
 
-            <div className="rounded-xl border border-brand-border bg-white p-6">
-              <h3 className="font-bold text-brand-navy mb-3">Service Areas</h3>
-              <p className="text-brand-muted text-sm mb-3">
-                We connect homeowners throughout Greater Phoenix with local plumbing contractors.
-              </p>
-              <Link href="/#service-areas" className="text-sm font-semibold text-brand-blue hover:text-brand-red transition-colors">
-                View all service areas →
-              </Link>
+            <div className="rounded-xl border border-brand-border bg-white p-5">
+              <h3 className="font-bold text-brand-navy mb-2 text-sm">Service Areas</h3>
+              <p className="text-brand-muted text-sm mb-3 leading-relaxed">Serving Phoenix, Mesa, Scottsdale, Chandler, Tempe, Glendale, and throughout Greater Phoenix.</p>
+              <Link href="/#service-areas" className="text-sm font-semibold text-brand-blue hover:text-brand-red transition-colors">All locations →</Link>
             </div>
           </aside>
         </div>
 
-        {/* Related Services */}
         {related.length > 0 && (
-          <div className="mt-16 pt-12 border-t border-brand-border">
-            <h2 className="text-2xl font-bold text-brand-navy mb-6">Related Plumbing Services</h2>
+          <div className="mt-16 pt-10 border-t border-brand-border">
+            <h2 className="text-2xl font-bold text-brand-navy mb-6">Related Services</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {related.map(s => <ServiceCard key={s.slug} service={s} />)}
             </div>

@@ -21,11 +21,7 @@ export async function generateMetadata({ params }: { params: Promise<{ city: str
     title: city.title,
     description: city.metaDescription,
     alternates: { canonical: `${SITE_URL}/${city.slug}` },
-    openGraph: {
-      title: city.title,
-      description: city.metaDescription,
-      url: `${SITE_URL}/${city.slug}`,
-    },
+    openGraph: { title: city.title, description: city.metaDescription, url: `${SITE_URL}/${city.slug}` },
   }
 }
 
@@ -44,25 +40,16 @@ export default async function CityPage({ params }: { params: Promise<{ city: str
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
     name: BUSINESS_NAME,
-    description: `${BUSINESS_NAME} helps ${city.name} homeowners connect with independent local plumbing contractors.`,
+    description: `Plumbing services in ${city.name}, AZ.`,
     url: `${SITE_URL}/${city.slug}`,
     telephone: PHONE_DISPLAY,
-    areaServed: {
-      '@type': 'City',
-      name: city.name,
-      containedInPlace: { '@type': 'State', name: 'Arizona' },
-    },
+    areaServed: { '@type': 'City', name: city.name, containedInPlace: { '@type': 'State', name: 'Arizona' } },
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
       name: `Plumbing Services in ${city.name}, AZ`,
       itemListElement: featuredServices.map(s => ({
         '@type': 'Offer',
-        itemOffered: {
-          '@type': 'Service',
-          name: s.name,
-          description: s.shortDesc,
-          url: `${SITE_URL}/services/${s.slug}`,
-        },
+        itemOffered: { '@type': 'Service', name: s.name, description: s.shortDesc, url: `${SITE_URL}/services/${s.slug}` },
       })),
     },
   }
@@ -82,7 +69,6 @@ export default async function CityPage({ params }: { params: Promise<{ city: str
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
-      {/* Breadcrumb */}
       <div className="bg-brand-surface border-b border-brand-border">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4">
           <Breadcrumbs crumbs={[
@@ -92,13 +78,10 @@ export default async function CityPage({ params }: { params: Promise<{ city: str
         </div>
       </div>
 
-      {/* Hero */}
-      <section className="py-14 md:py-18" style={{ backgroundColor: 'var(--color-brand-navy)' }}>
+      <section className="py-14" style={{ backgroundColor: 'var(--color-brand-navy)' }}>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
-            <p className="text-brand-blue-light text-sm font-bold uppercase tracking-widest mb-3">
-              {city.name}, Arizona
-            </p>
+            <p className="text-brand-blue-light text-sm font-bold uppercase tracking-widest mb-3">{city.name}, Arizona</p>
             <h1 className="text-4xl sm:text-5xl font-extrabold text-white mb-4">{city.h1}</h1>
             <p className="text-white/70 text-lg leading-relaxed mb-6 max-w-2xl">{city.intro}</p>
             <CTAButton label={`Call Now · ${PHONE_DISPLAY}`} size="lg" />
@@ -110,19 +93,13 @@ export default async function CityPage({ params }: { params: Promise<{ city: str
         <div className="lg:grid lg:grid-cols-3 lg:gap-12">
           <div className="lg:col-span-2 space-y-12">
 
-            {/* Local Facts */}
             <div>
-              <h2 className="text-2xl font-bold text-brand-navy mb-4">
-                Plumbing in {city.name}: What to Know
-              </h2>
+              <h2 className="text-2xl font-bold text-brand-navy mb-4">Plumbing in {city.name}</h2>
               <p className="text-brand-muted leading-relaxed">{city.localFacts}</p>
             </div>
 
-            {/* Common Issues */}
             <div>
-              <h2 className="text-2xl font-bold text-brand-navy mb-5">
-                Common Plumbing Issues in {city.name}
-              </h2>
+              <h2 className="text-2xl font-bold text-brand-navy mb-5">Common Issues in {city.name}</h2>
               <ul className="space-y-3">
                 {city.commonIssues.map((issue, i) => (
                   <li key={i} className="flex items-start gap-3">
@@ -135,42 +112,29 @@ export default async function CityPage({ params }: { params: Promise<{ city: str
               </ul>
             </div>
 
-            {/* Services in this city */}
             <div>
-              <h2 className="text-2xl font-bold text-brand-navy mb-2">
-                Plumbing Services We Connect You For in {city.name}
-              </h2>
-              <p className="text-brand-muted mb-6">
-                Call Urgent Plumber to get connected with an independent local contractor for any of these services in {city.name} and surrounding areas.
-              </p>
+              <h2 className="text-2xl font-bold text-brand-navy mb-2">Plumbing Services in {city.name}</h2>
+              <p className="text-brand-muted mb-6">Call Urgent Plumber for any of these services in {city.name} and surrounding areas.</p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {featuredServices.map(s => <ServiceCard key={s.slug} service={s} />)}
               </div>
-              <div className="mt-5">
-                <Link href="/services" className="text-brand-blue font-semibold hover:text-brand-red transition-colors text-sm">
-                  View all plumbing services →
-                </Link>
+              <div className="mt-4">
+                <Link href="/services" className="text-brand-blue font-semibold hover:text-brand-red transition-colors text-sm">View all services →</Link>
               </div>
             </div>
 
-            {/* FAQs */}
             {city.faqs.length > 0 && (
               <div>
-                <h2 className="text-2xl font-bold text-brand-navy mb-6">
-                  Plumbing Questions from {city.name} Homeowners
-                </h2>
+                <h2 className="text-2xl font-bold text-brand-navy mb-6">Questions About Plumbing in {city.name}</h2>
                 <FAQAccordion faqs={city.faqs} />
               </div>
             )}
           </div>
 
-          {/* Sidebar */}
-          <aside className="mt-12 lg:mt-0 space-y-6">
+          <aside className="mt-12 lg:mt-0 space-y-5">
             <div className="rounded-xl bg-brand-navy text-white p-6 sticky top-24">
-              <h3 className="text-xl font-bold mb-2">Plumber in {city.name}?</h3>
-              <p className="text-white/70 text-sm mb-5 leading-relaxed">
-                Call Urgent Plumber to connect with an independent local plumbing contractor serving {city.name}, AZ.
-              </p>
+              <h3 className="text-lg font-bold mb-2">Plumber in {city.name}?</h3>
+              <p className="text-white/70 text-sm mb-5 leading-relaxed">Call Urgent Plumber for plumbing help in {city.name}, AZ.</p>
               <a
                 href={PHONE_HREF}
                 className="flex items-center justify-center gap-2 w-full py-4 px-4 rounded-lg font-bold text-white text-base transition-colors"
@@ -181,12 +145,11 @@ export default async function CityPage({ params }: { params: Promise<{ city: str
                 </svg>
                 {PHONE_DISPLAY}
               </a>
-              <p className="text-white/40 text-xs text-center mt-3">Free connection service</p>
             </div>
 
             {nearbyCities.length > 0 && (
-              <div className="rounded-xl border border-brand-border bg-white p-6">
-                <h3 className="font-bold text-brand-navy mb-3">Nearby Areas We Also Serve</h3>
+              <div className="rounded-xl border border-brand-border bg-white p-5">
+                <h3 className="font-bold text-brand-navy mb-3 text-sm">Nearby Areas</h3>
                 <ul className="space-y-2">
                   {nearbyCities.map(c => (
                     <li key={c.slug}>

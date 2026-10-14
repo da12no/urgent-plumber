@@ -105,7 +105,12 @@ export default function HomePage() {
             <p className="text-white/75 text-lg sm:text-xl leading-relaxed mb-8 max-w-lg">
               Plumbing help throughout the Phoenix metro area - from emergency repairs to water heaters, drain cleaning, slab leaks, and more.
             </p>
-            <CTAButton label={`Call Now · ${PHONE_DISPLAY}`} size="lg" />
+            <a href={PHONE_HREF} className="flex sm:inline-flex items-center justify-center gap-2.5 font-bold rounded-lg transition-colors px-9 py-4 text-lg bg-brand-red hover:bg-brand-red-hover text-white">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 shrink-0" aria-hidden="true">
+                <path fillRule="evenodd" d="M1.5 4.5a3 3 0 0 1 3-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 0 1-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 0 0 6.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 0 1 1.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 0 1-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5z" clipRule="evenodd" />
+              </svg>
+              Call Now · {PHONE_DISPLAY}
+            </a>
             <p className="mt-4 text-white/40 text-sm">Phoenix · Mesa · Chandler · Scottsdale · Tempe · Glendale and more</p>
           </div>
         </div>
@@ -169,7 +174,7 @@ export default function HomePage() {
               </div>
             </div>
             <div className="relative rounded-2xl overflow-hidden aspect-[4/3]">
-              <Image src="/van.jpg" alt="Urgent Plumber Phoenix, AZ" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
+              <Image src="/plumbing-work.jpg" alt="Tankless water heater installation in Phoenix, AZ" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
             </div>
           </div>
         </div>
@@ -209,7 +214,7 @@ export default function HomePage() {
       </section>
 
       {/* Final CTA */}
-      <section className="py-16 md:py-20 bg-brand-red">
+      <section className="pt-16 pb-28 md:py-20 bg-brand-red">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-4">Need a Plumber Now?</h2>
           <p className="text-white/80 text-lg mb-8 max-w-lg mx-auto">Call Urgent Plumber for plumbing help anywhere in the Phoenix metro area.</p>

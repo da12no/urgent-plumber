@@ -46,11 +46,8 @@ export function Header() {
         <div className="flex h-16 items-center justify-between gap-4">
 
           {/* Logo */}
-          <Link href="/" className="shrink-0 flex items-center gap-2" aria-label="Urgent Plumber - Home">
-            <Image src="/logo-transparent.png" alt="Urgent Plumber" width={48} height={48} className="h-10 w-auto" priority />
-            <span className="hidden sm:block font-bold text-brand-navy text-lg leading-tight">
-              Urgent<br /><span className="text-brand-red">Plumber</span>
-            </span>
+          <Link href="/" className="shrink-0" aria-label="Urgent Plumber - Home">
+            <Image src="/logo-transparent.png" alt="Urgent Plumber" width={140} height={48} className="h-12 w-auto" priority />
           </Link>
 
           {/* Desktop nav */}

@@ -15,9 +15,8 @@ export function Footer() {
 
           {/* Business */}
           <div className="sm:col-span-2 lg:col-span-1">
-            <Link href="/" className="inline-flex items-center gap-3 mb-4" aria-label="Urgent Plumber - Home">
-              <Image src="/logo-transparent.png" alt="Urgent Plumber" width={48} height={48} className="h-12 w-auto" />
-              <span className="font-bold text-xl text-white">Urgent<br /><span className="text-brand-red">Plumber</span></span>
+            <Link href="/" className="inline-flex mb-4" aria-label="Urgent Plumber - Home">
+              <Image src="/logo-transparent.png" alt="Urgent Plumber" width={140} height={48} className="h-14 w-auto" />
             </Link>
             <p className="text-sm text-white/70 leading-relaxed mb-5">
               Helping Phoenix metro homeowners connect with independent local plumbing contractors for repairs, installations, and urgent plumbing needs.
@@ -89,17 +88,13 @@ export function Footer() {
               <li><Link href="/sitemap.xml" className="text-sm text-white/70 hover:text-white transition-colors">Sitemap</Link></li>
             </ul>
 
-            <div className="rounded-lg p-4" style={{ backgroundColor: 'rgba(200,18,18,0.15)' }}>
-              <p className="text-xs font-bold text-brand-red mb-1">⚠ Placeholder Number</p>
-              <p className="text-xs text-white/60">Update {PHONE_DISPLAY} in <code className="text-white/80">src/lib/config.ts</code> before launch.</p>
-            </div>
           </div>
         </div>
       </div>
 
       {/* Bottom bar + disclaimer */}
       <div className="border-t border-white/10">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 pb-24 md:pb-6">
           <p className="text-xs text-white/40 leading-relaxed mb-3">{DISCLAIMER}</p>
           <p className="text-xs text-white/30">© 2025 {BUSINESS_NAME}. All rights reserved. Phoenix, Arizona.</p>
         </div>
